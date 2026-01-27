@@ -26,6 +26,7 @@ export default function Contact() {
           ${open ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0`}
       >
+        {/* Logo */}
         <div className="flex items-center gap-3 px-6 py-5 border-b border-emerald-700">
           <img
             src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
@@ -34,11 +35,15 @@ export default function Contact() {
           />
           <h2 className="text-lg font-bold">Sunshine Hotel</h2>
 
-          <button onClick={() => setOpen(false)} className="ml-auto lg:hidden">
+          <button
+            onClick={() => setOpen(false)}
+            className="ml-auto lg:hidden"
+          >
             <X size={22} />
           </button>
         </div>
 
+        {/* Menu */}
         <nav className="px-4 py-6 space-y-2">
           {menuItems.map((item, i) => (
             <button
@@ -79,44 +84,24 @@ export default function Contact() {
       <div className={`flex-1 ${open ? "overflow-hidden" : ""} lg:ml-64`}>
 
         {/* ================= HEADER ================= */}
-        <header className="fixed top-0 left-0 w-full bg-green-600 text-white z-30 shadow-md lg:left-64 lg:w-[calc(100%-16rem)]">
-          <div className="max-w-7xl mx-auto flex items-center gap-4 px-4 py-4 overflow-x-auto">
-
-            {/* Mobile Menu Button */}
+        <header className="fixed top-0 left-0 right-0 z-30 bg-green-600 text-white shadow lg:left-64 lg:w-[calc(100%-16rem)]">
+          <div className="flex items-center gap-4 px-4 py-4">
+            
+            {/* Hamburger (mobile) */}
             <button className="lg:hidden" onClick={() => setOpen(true)}>
               <Menu size={26} />
             </button>
 
             {/* Logo */}
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex items-center gap-2">
               <img
                 src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
                 alt="Hotel Logo"
                 className="w-8 h-8 rounded-full"
               />
-              <h1 className="text-lg sm:text-xl font-bold whitespace-nowrap">
+              <h1 className="text-lg sm:text-xl font-bold">
                 Sunshine Hotel
               </h1>
-            </div>
-
-            {/* Navigation Buttons (UNCHANGED LOGIC) */}
-            <div className="flex gap-2 ml-auto flex-nowrap">
-              {menuItems.map(({ label, path }) => (
-                <button
-                  key={label}
-                  onClick={() => navigate(path)}
-                  className="bg-white text-green-700 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-green-100 transition shadow whitespace-nowrap"
-                >
-                  {label}
-                </button>
-              ))}
-
-              <button
-                onClick={() => navigate("/")}
-                className="bg-red-500 text-white px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-red-600 transition shadow whitespace-nowrap"
-              >
-                Exit
-              </button>
             </div>
           </div>
         </header>
