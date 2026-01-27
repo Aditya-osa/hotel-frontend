@@ -151,9 +151,9 @@ export default function GuestDashboard() {
 
       {/* ================= MAIN ================= */}
       <main className="dashboard-main">
-        {/* Header with only logo and title */}
+        {/* Header */}
         <header className="dashboard-header">
-          <div className="header-content">
+          <div className="header-left">
             <img
               src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
               alt="Hotel Logo"
@@ -161,8 +161,17 @@ export default function GuestDashboard() {
             />
             <div>
               <h1>Sunshine Hotel</h1>
-              <p>Luxury Hotel Booking Experience</p>
+              <p>Hotel Booking Management</p>
             </div>
+          </div>
+          <div className="header-right">
+            <div className="user-info">
+              <span className="user-name">{username}</span>
+              <span className="user-role">Guest</span>
+            </div>
+            <button className="logout-btn" onClick={() => navigate("/")}>
+              Logout
+            </button>
           </div>
         </header>
         {/* Room Selection */}
