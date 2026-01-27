@@ -100,7 +100,7 @@ export default function Admin() {
       {/* Centered Footer */}
       <footer className="bg-white/80 backdrop-blur-md py-6 px-4 border-t border-blue-100 flex flex-col items-center justify-center">
         <p className="text-gray-500 text-sm text-center">
-          © 2025 Patil Bhandu Hospital Management System
+          © 2025 sunshine Hotel Management System
         </p>
         <p className="text-[10px] text-blue-400 mt-1 uppercase tracking-widest font-bold">
           Secure Portal
