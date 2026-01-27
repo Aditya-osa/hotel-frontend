@@ -13,14 +13,14 @@
 ===================== */
 .dashboard-sidebar {
   width: 260px;
-  background: #ffffff;
-  color: #374151;
+  background: #1a1d23;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   transition: all 0.3s ease-in-out;
-  border-right: 1px solid #e5e7eb;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  border-right: 1px solid #2d3748;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
   position: fixed;
   left: 0;
   top: 0;
@@ -42,8 +42,9 @@
 
 .dashboard-sidebar .sidebar-header {
   padding: 20px;
-  background: #1e40af;
+  background: #2d3748;
   color: white;
+  border-bottom: 1px solid #4a5568;
 }
 
 .dashboard-sidebar h2 {
@@ -55,7 +56,7 @@
 
 .dashboard-sidebar p {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.8);
+  color: #a0aec0;
   margin-top: 4px;
 }
 
@@ -69,7 +70,7 @@
 }
 
 .dashboard-sidebar nav button {
-  padding: 10px 15px;
+  padding: 12px 15px;
   text-align: left;
   border-radius: 6px;
   font-weight: 500;
@@ -77,27 +78,27 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #374151;
+  color: #e2e8f0;
   transition: all 0.2s;
 }
 
 .dashboard-sidebar nav button:hover {
-  background: #f1f5f9;
-  color: #1e40af;
+  background: #2d3748;
+  color: #ffffff;
 }
 
 .dashboard-sidebar nav button.active {
-  background: #dbeafe;
-  color: #1e40af;
+  background: #3182ce;
+  color: #ffffff;
   font-weight: 600;
 }
 
 /* Sidebar Exit button */
 .dashboard-sidebar .exit-btn {
   margin: 15px 10px;
-  padding: 10px 15px;
-  background: #fee2e2;
-  color: #dc2626;
+  padding: 12px 15px;
+  background: #e53e3e;
+  color: #ffffff;
   border-radius: 6px;
   font-weight: 600;
   font-size: 0.85rem;
@@ -108,7 +109,7 @@
 }
 
 .dashboard-sidebar .exit-btn:hover {
-  background: #fecaca;
+  background: #c53030;
 }
 
 /* Mobile Header */
