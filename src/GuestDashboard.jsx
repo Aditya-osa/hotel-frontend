@@ -5,6 +5,7 @@ import "./GuestDashboard.css"; // Import the CSS file
 
 export default function GuestDashboard() {
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [username, setUsername] = useState("");
   const [nights, setNights] = useState(0);
@@ -124,8 +125,16 @@ export default function GuestDashboard() {
 
   return (
     <div className="guest-dashboard">
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="sidebar-overlay" 
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      
       {/* ================= SIDEBAR ================= */}
-      <aside className="dashboard-sidebar">
+      <aside className={`dashboard-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <h2>Welcome, {username}</h2>
           <p>Premium Hotel Booking Experience</p>
@@ -133,20 +142,35 @@ export default function GuestDashboard() {
         <nav>
           <button
             className="active"
-            onClick={() => navigate("/guest-dashboard")}
+            onClick={() => {
+              navigate("/guest-dashboard");
+              setSidebarOpen(false);
+            }}
           >
             Booking
           </button>
-          <button onClick={() => navigate("/hotel-info")}>
+          <button onClick={() => {
+            navigate("/hotel-info");
+            setSidebarOpen(false);
+          }}>
             Hotel Info
           </button>
-          <button onClick={() => navigate("/contact")}>
+          <button onClick={() => {
+            navigate("/contact");
+            setSidebarOpen(false);
+          }}>
             Contact
           </button>
-          <button onClick={() => navigate("/feedback")}>
+          <button onClick={() => {
+            navigate("/feedback");
+            setSidebarOpen(false);
+          }}>
             Feedback
           </button>
-          <button onClick={() => navigate("/booking-status")}>
+          <button onClick={() => {
+            navigate("/booking-status");
+            setSidebarOpen(false);
+          }}>
             Booking Status
           </button>
         </nav>
@@ -157,7 +181,28 @@ export default function GuestDashboard() {
 
       {/* ================= MAIN ================= */}
       <main className="dashboard-main">
-        {/* Header */}
+        {/* Mobile Header with Hamburger */}
+        <header className="mobile-header">
+          <button 
+            className="hamburger-btn" 
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
+            ☰
+          </button>
+          <div className="mobile-header-content">
+            <img
+              src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
+              alt="Hotel Logo"
+              className="header-logo"
+            />
+            <div>
+              <h1>Sunshine Hotel</h1>
+              <p>Hotel Booking Management</p>
+            </div>
+          </div>
+        </header>
+
+        {/* Desktop Header */}
         <header className="dashboard-header">
           <div className="header-left">
             <img

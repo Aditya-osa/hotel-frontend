@@ -21,6 +21,23 @@
   transition: all 0.3s ease-in-out;
   border-right: 1px solid #e5e7eb;
   box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 1000;
+  transform: translateX(0);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
 }
 
 .dashboard-sidebar .sidebar-header {
@@ -92,6 +109,53 @@
 
 .dashboard-sidebar .exit-btn:hover {
   background: #fecaca;
+}
+
+/* Mobile Header */
+.mobile-header {
+  display: none;
+  background: #ffffff;
+  padding: 15px;
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #374151;
+  padding: 5px;
+}
+
+.mobile-header-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.mobile-header-content .header-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.mobile-header-content h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.mobile-header-content p {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 2px 0 0 0;
 }
 
 /* =====================
@@ -370,17 +434,51 @@
 }
 
 @media (max-width: 768px) {
-  .guest-dashboard {
-    flex-direction: column;
-  }
+  /* Sidebar mobile behavior */
   .dashboard-sidebar {
-    width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
+    transform: translateX(-100%);
   }
-  .dashboard-sidebar nav {
-    flex-direction: row;
-    gap: 10px;
-    padding: 12px;
+  
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar-overlay {
+    display: block;
+  }
+  
+  /* Main content adjustment */
+  .dashboard-main {
+    margin-left: 0;
+    padding: 20px;
+  }
+  
+  /* Show mobile header, hide desktop header */
+  .mobile-header {
+    display: flex;
+  }
+  
+  .dashboard-header {
+    display: none;
+  }
+  
+  /* Adjust room cards for mobile */
+  .room-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .room-card img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  /* Adjust form for mobile */
+  .date-inputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .booking-form {
+    padding: 20px;
   }
 }
