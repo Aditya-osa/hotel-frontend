@@ -131,53 +131,49 @@ export default function GuestDashboard() {
       <header className="dashboard-header">
         <div className="header-left">
           <h1>Welcome, {username}</h1>
-          <p>Premium Hotel Booking Experience</p>
+          <p className="desktop-only">Premium Hotel Booking Experience</p>
         </div>
-       
-          {/* Right */}
-          <div className="flex items-center gap-4">
-
-              <button
-              onClick={() => navigate("/guest-dashboard")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-             Booking
-            </button>
-            
-            <button
-              onClick={() => navigate("/hotel-info")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Hotel Info
-            </button>
-
-            <button
-              onClick={() => navigate("/contact")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Contact
-            </button>
-
-            <button
-              onClick={() => navigate("/feedback")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Feedback
-            </button>
-
-            <button
-              onClick={() => navigate("/booking-status")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Booking Status
-            </button>
+        
+        <div className="header-right">
           <button
-  onClick={() => navigate("/")}
-  className="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition shadow"
->
-  Exit
-</button>
+            onClick={() => navigate("/guest-dashboard")}
+            className="nav-button"
+          >
+            <span className="desktop-only">Booking</span>
+            <span className="mobile-only">🏠</span>
+          </button>
+          
+          <button
+            onClick={() => navigate("/hotel-info")}
+            className="nav-button"
+          >
+            <span className="desktop-only">Hotel Info</span>
+            <span className="mobile-only">ℹ️</span>
+          </button>
 
+          <button
+            onClick={() => navigate("/contact")}
+            className="nav-button"
+          >
+            <span className="desktop-only">Contact</span>
+            <span className="mobile-only">📞</span>
+          </button>
+
+          <button
+            onClick={() => navigate("/booking-status")}
+            className="nav-button"
+          >
+            <span className="desktop-only">My Bookings</span>
+            <span className="mobile-only">📅</span>
+          </button>
+          
+          <button
+            onClick={() => navigate("/")}
+            className="nav-button bg-red-500 text-white hover:bg-red-600"
+          >
+            <span className="desktop-only">Exit</span>
+            <span className="mobile-only">🚪</span>
+          </button>
         </div>
       </header>
 
@@ -193,20 +189,27 @@ export default function GuestDashboard() {
                 className={`room-card ${
                   formData.roomType === room.id ? "selected" : ""
                 }`}
+                htmlFor={`room-${room.id}`}
               >
                 <input
                   type="radio"
+                  id={`room-${room.id}`}
                   name="roomType"
                   value={room.id}
                   checked={formData.roomType === room.id}
                   onChange={handleChange}
-                  hidden
+                  className="sr-only"
                 />
-                <img src={room.image} alt={room.name} />
+                <img 
+                  src={room.image} 
+                  alt={room.name} 
+                  loading="lazy"
+                  className="room-image"
+                />
                 <div className="room-info">
                   <h3>{room.name}</h3>
                   <p>{room.desc}</p>
-                  <p className="room-price">₹{room.price} / night</p>
+                  <p className="room-price">₹{room.price.toLocaleString()} / night</p>
                 </div>
               </label>
             ))}
@@ -216,28 +219,130 @@ export default function GuestDashboard() {
         {/* Booking Form */}
         <form onSubmit={handleSubmit} className="booking-form">
           <h2>Booking Details</h2>
-          <input type="text" name="name" placeholder="Guest Name" value={formData.name} onChange={handleChange} required />
-          <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
-          <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
+          
+          <div className="form-group">
+            <label htmlFor="name" className="sr-only">Guest Name</label>
+            <input 
+              id="name"
+              type="text" 
+              name="name" 
+              placeholder="Guest Name" 
+              value={formData.name} 
+              onChange={handleChange} 
+              required 
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="email" className="sr-only">Email</label>
+            <input 
+              id="email"
+              type="email" 
+              name="email" 
+              placeholder="Email Address" 
+              value={formData.email} 
+              onChange={handleChange} 
+              required 
+              inputMode="email"
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="phone" className="sr-only">Phone Number</label>
+            <input 
+              id="phone"
+              type="tel" 
+              name="phone" 
+              placeholder="Phone Number" 
+              value={formData.phone} 
+              onChange={handleChange} 
+              required 
+              inputMode="tel"
+            />
+          </div>
 
           <div className="date-inputs">
-            <input type="date" name="checkInDate" value={formData.checkInDate} onChange={handleChange} required />
-            <input type="date" name="checkOutDate" value={formData.checkOutDate} onChange={handleChange} required />
+            <div className="form-group">
+              <label htmlFor="checkInDate">Check-in</label>
+              <input 
+                id="checkInDate"
+                type="date" 
+                name="checkInDate" 
+                value={formData.checkInDate} 
+                onChange={handleChange} 
+                required 
+                min={new Date().toISOString().split('T')[0]}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="checkOutDate">Check-out</label>
+              <input 
+                id="checkOutDate"
+                type="date" 
+                name="checkOutDate" 
+                value={formData.checkOutDate} 
+                onChange={handleChange} 
+                required 
+                min={formData.checkInDate || new Date().toISOString().split('T')[0]}
+                disabled={!formData.checkInDate}
+              />
+            </div>
           </div>
 
-          <input type="number" name="guests" min="1" placeholder="Number of Guests" value={formData.guests} onChange={handleChange} />
-          <label className="checkbox-label">
-            <input type="checkbox" name="breakfast" checked={formData.breakfast} onChange={handleChange} />
-            Breakfast (+₹300/day)
-          </label>
-          <textarea name="specialRequest" placeholder="Any special requests?" value={formData.specialRequest} onChange={handleChange} />
+          <div className="form-group">
+            <label htmlFor="guests">Number of Guests</label>
+            <input 
+              id="guests"
+              type="number" 
+              name="guests" 
+              min="1" 
+              max="10"
+              value={formData.guests} 
+              onChange={handleChange} 
+            />
+          </div>
+          
+          <div className="form-group checkbox-container">
+            <label className="checkbox-label">
+              <input 
+                type="checkbox" 
+                name="breakfast" 
+                checked={formData.breakfast} 
+                onChange={handleChange} 
+                className="checkbox-input"
+              />
+              <span className="checkbox-custom"></span>
+              <span className="checkbox-text">Breakfast (+₹300/day)</span>
+            </label>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="specialRequest" className="sr-only">Special Requests</label>
+            <textarea 
+              id="specialRequest" 
+              name="specialRequest" 
+              placeholder="Any special requests?" 
+              rows="3"
+              value={formData.specialRequest} 
+              onChange={handleChange} 
+            />
+          </div>
 
           <div className="price-summary">
-            <p>Nights: <b>{nights}</b></p>
-            <p>Total: ₹{totalPrice}</p>
+            <div className="price-row">
+              <span>Nights:</span>
+              <span><b>{nights}</b></span>
+            </div>
+            <div className="price-row total">
+              <span>Total:</span>
+              <span>₹{totalPrice.toLocaleString()}</span>
+            </div>
           </div>
 
-          <button type="submit">Confirm Booking</button>
+          <button type="submit" className="book-now-btn">
+            {totalPrice > 0 ? `Book Now - ₹${totalPrice.toLocaleString()}` : 'Select Dates to Book'}
+          </button>
         </form>
       </main>
 
