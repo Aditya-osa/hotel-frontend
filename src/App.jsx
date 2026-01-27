@@ -59,12 +59,7 @@ function Home() {
               Guest Login / Signup
             </button>
 
-            <button
-              onClick={() => navigate("/hotel-info")}
-              className="w-full py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-semibold text-base sm:text-lg transition shadow-md active:scale-95"
-            >
-              Hotel Information
-            </button>
+           
           </div>
         </div>
       </main>
