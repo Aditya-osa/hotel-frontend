@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "./config";
-import "./GuestDashboardSidebar.css"; // Import the CSS file
+import "./GuestDashboard.css"; // Import the CSS file
 
 export default function GuestDashboard() {
   const navigate = useNavigate();

@@ -97,6 +97,17 @@
 }
 
 /* Room Cards Grid */
+.room-selection {
+  margin-bottom: 40px;
+}
+
+.room-selection h2 {
+  font-weight: 800;
+  color: #065f46;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
 .room-cards {
   display: grid;
   gap: 25px;
@@ -155,6 +166,18 @@
   display: flex;
   flex-direction: column;
   gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
 }
 
 .booking-form h2 {
