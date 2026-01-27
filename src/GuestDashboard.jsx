@@ -151,6 +151,20 @@ export default function GuestDashboard() {
 
       {/* ================= MAIN ================= */}
       <main className="dashboard-main">
+        {/* Header with only logo and title */}
+        <header className="dashboard-header">
+          <div className="header-content">
+            <img
+              src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
+              alt="Hotel Logo"
+              className="header-logo"
+            />
+            <div>
+              <h1>Sunshine Hotel</h1>
+              <p>Luxury Hotel Booking Experience</p>
+            </div>
+          </div>
+        </header>
         {/* Room Selection */}
         <section className="room-selection">
           <h2>Choose Your Room</h2>

@@ -96,6 +96,42 @@
   overflow-y: auto;
 }
 
+/* Header */
+.dashboard-header {
+  background: linear-gradient(135deg, #10b981, #047857);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.2);
+}
+
+.dashboard-header h1 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.dashboard-header p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1rem;
+  margin: 5px 0 0 0;
+}
+
 /* Room Cards Grid */
 .room-selection {
   margin-bottom: 40px;
