@@ -47,112 +47,131 @@ export default function Feedback() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-200">
+    <div className="flex min-h-screen bg-gradient-to-br from-emerald-50 via-green-100 to-emerald-200">
 
-      {/* ================= SIDEBAR (DESKTOP) ================= */}
-      <aside className="hidden md:flex w-64 bg-green-700 text-white flex-col p-5">
-        <h2 className="text-xl font-bold mb-8">Sunshine Hotel</h2>
+      {/* ================= SIDEBAR DESKTOP ================= */}
+      <aside className="hidden md:flex w-64 bg-emerald-800 text-white flex-col shadow-xl">
+        <div className="px-6 py-6 border-b border-emerald-700">
+          <h1 className="text-xl font-extrabold tracking-wide">
+            Sunshine Hotel
+          </h1>
+          <p className="text-xs text-emerald-200 mt-1">
+            Guest Panel
+          </p>
+        </div>
 
-        <nav className="space-y-3 flex-grow">
+        <nav className="flex-grow px-4 py-6 space-y-2">
           {menuItems.map((item) => (
             <button
               key={item.label}
               onClick={() => navigate(item.path)}
-              className="w-full text-left px-4 py-2 rounded-lg hover:bg-green-600 transition"
+              className={`w-full text-left px-4 py-3 rounded-xl transition font-medium
+                ${
+                  item.label === "Feedback"
+                    ? "bg-white text-emerald-800 shadow"
+                    : "hover:bg-emerald-700"
+                }`}
             >
               {item.label}
             </button>
           ))}
         </nav>
 
-        <button
-          onClick={() => navigate("/")}
-          className="mt-auto bg-red-500 py-2 rounded-lg hover:bg-red-600 transition"
-        >
-          Exit
-        </button>
+        <div className="p-4">
+          <button
+            onClick={() => navigate("/")}
+            className="w-full bg-red-500 py-2.5 rounded-xl hover:bg-red-600 transition font-semibold"
+          >
+            Exit
+          </button>
+        </div>
       </aside>
 
       {/* ================= MOBILE SIDEBAR ================= */}
-      {sidebarOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div
-            className="absolute inset-0 bg-black/40"
-            onClick={() => setSidebarOpen(false)}
-          ></div>
+      <div
+        className={`fixed inset-0 z-50 md:hidden transition ${
+          sidebarOpen ? "visible" : "invisible"
+        }`}
+      >
+        <div
+          className={`absolute inset-0 bg-black/40 transition-opacity ${
+            sidebarOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setSidebarOpen(false)}
+        />
 
-          <div className="absolute left-0 top-0 h-full w-64 bg-green-700 text-white p-5">
-            <h2 className="text-xl font-bold mb-6">Sunshine Hotel</h2>
+        <aside
+          className={`absolute left-0 top-0 h-full w-64 bg-emerald-800 text-white p-5
+          transform transition-transform duration-300
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        >
+          <h2 className="text-xl font-bold mb-6">Sunshine Hotel</h2>
 
-            <nav className="space-y-3">
-              {menuItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => {
-                    navigate(item.path);
-                    setSidebarOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-2 rounded-lg hover:bg-green-600"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </nav>
+          <nav className="space-y-2">
+            {menuItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => {
+                  navigate(item.path);
+                  setSidebarOpen(false);
+                }}
+                className={`w-full text-left px-4 py-3 rounded-xl
+                  ${
+                    item.label === "Feedback"
+                      ? "bg-white text-emerald-800"
+                      : "hover:bg-emerald-700"
+                  }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
 
-            <button
-              onClick={() => navigate("/")}
-              className="mt-6 w-full bg-red-500 py-2 rounded-lg"
-            >
-              Exit
-            </button>
-          </div>
-        </div>
-      )}
+          <button
+            onClick={() => navigate("/")}
+            className="mt-6 w-full bg-red-500 py-2.5 rounded-xl"
+          >
+            Exit
+          </button>
+        </aside>
+      </div>
 
-      {/* ================= MAIN CONTENT ================= */}
+      {/* ================= MAIN ================= */}
       <div className="flex flex-col flex-grow">
 
-        {/* HEADER (NO NAV BUTTONS) */}
-        <header className="bg-green-600 text-white sticky top-0 z-40 shadow-md">
+        {/* HEADER */}
+        <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
           <div className="flex items-center gap-4 px-4 py-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="md:hidden text-2xl"
+              className="md:hidden text-2xl text-emerald-700"
             >
               ☰
             </button>
 
-            <div className="flex items-center gap-3">
-              <img
-                src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
-                alt="Hotel Logo"
-                className="w-9 h-9 rounded-full"
-              />
-              <div>
-                <h1 className="text-lg font-bold">Sunshine Hotel</h1>
-                <p className="text-[11px] text-green-100">
-                  Guest Feedback Portal
-                </p>
-              </div>
+            <div>
+              <h1 className="text-lg font-bold text-emerald-800">
+                Guest Feedback
+              </h1>
+              <p className="text-xs text-gray-500">
+                Tell us about your experience
+              </p>
             </div>
           </div>
         </header>
 
-        {/* ================= FEEDBACK FORM ================= */}
-        <main className="flex-grow flex items-center justify-center px-4 py-10 relative">
-          <div className="absolute -top-32 -left-32 w-80 h-80 bg-green-300/30 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-green-400/30 rounded-full blur-3xl"></div>
-
+        {/* FORM */}
+        <main className="flex-grow flex items-center justify-center px-4 py-12">
           <form
             onSubmit={handleSubmit}
-            className="relative bg-white shadow-2xl rounded-2xl p-6 sm:p-8 w-full max-w-md border border-green-100"
+            className="bg-white w-full max-w-md rounded-3xl shadow-2xl p-7 sm:p-8 border"
           >
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-center text-green-700">
-              Guest Feedback
+            <h2 className="text-2xl font-extrabold text-center text-emerald-700">
+              We Value Your Feedback 💚
             </h2>
 
-            <p className="text-center text-gray-600 mb-6">
-              Help us improve your stay 💚
+            <p className="text-center text-gray-500 text-sm mt-1 mb-6">
+              Your opinion helps us serve you better
             </p>
 
             <div className="space-y-4">
@@ -163,7 +182,7 @@ export default function Feedback() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full p-3.5 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-400 outline-none"
+                className="w-full p-3.5 rounded-xl border focus:ring-2 focus:ring-emerald-400 outline-none"
               />
 
               <input
@@ -173,18 +192,20 @@ export default function Feedback() {
                 value={formData.mobile}
                 onChange={handleChange}
                 required
-                className="w-full p-3.5 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-400 outline-none"
+                className="w-full p-3.5 rounded-xl border focus:ring-2 focus:ring-emerald-400 outline-none"
               />
 
-              {/* Rating */}
-              <div className="flex justify-center gap-1 py-2">
+              {/* Stars */}
+              <div className="flex justify-center gap-1 pt-2">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     key={star}
                     type="button"
                     onClick={() => setRating(star)}
-                    className={`text-3xl transition ${
-                      star <= rating ? "text-green-500 scale-110" : "text-gray-300"
+                    className={`text-4xl transition-transform ${
+                      star <= rating
+                        ? "text-emerald-500 scale-110"
+                        : "text-gray-300"
                     }`}
                   >
                     ★
@@ -194,27 +215,27 @@ export default function Feedback() {
 
               <textarea
                 name="feedback"
-                placeholder="Write your feedback..."
                 rows="4"
+                placeholder="Write your feedback..."
                 value={formData.feedback}
                 onChange={handleChange}
                 required
-                className="w-full p-3.5 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-400 outline-none resize-none"
+                className="w-full p-3.5 rounded-xl border focus:ring-2 focus:ring-emerald-400 outline-none resize-none"
               />
             </div>
 
-            <button className="w-full bg-green-500 text-white py-3.5 rounded-xl text-lg font-semibold hover:bg-green-600 transition shadow-md mt-6">
+            <button
+              type="submit"
+              className="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-xl text-lg font-semibold transition active:scale-95"
+            >
               Submit Feedback
             </button>
           </form>
         </main>
 
-        {/* ================= FOOTER ================= */}
-        <footer className="bg-green-700 text-white py-4 text-center">
-          <p className="text-sm">© 2026 Sunshine Hotel</p>
-          <p className="text-[10px] uppercase tracking-widest text-green-200 mt-1">
-            Guest Satisfaction & Quality Service
-          </p>
+        {/* FOOTER */}
+        <footer className="text-center py-4 text-sm text-gray-600">
+          © 2026 Sunshine Hotel • Guest Experience Team
         </footer>
       </div>
     </div>
