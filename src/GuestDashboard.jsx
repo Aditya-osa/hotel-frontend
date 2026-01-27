@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
 import { API_BASE_URL } from "./config";
-import "./GuestDashboard.css";
+import "./GuestDashboard.css"; // Import the CSS file
 
 export default function GuestDashboard() {
   const navigate = useNavigate();
 
-  const [open, setOpen] = useState(false); // sidebar
   const [username, setUsername] = useState("");
   const [nights, setNights] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -17,21 +15,24 @@ export default function GuestDashboard() {
       id: "single",
       name: "Single Room",
       price: 2000,
-      image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+      image:
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
       desc: "Perfect for solo travelers. Cozy & comfortable."
     },
     {
       id: "deluxe",
       name: "Deluxe Room",
       price: 3500,
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
+      image:
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945",
       desc: "Spacious room with premium interiors."
     },
     {
       id: "suite",
       name: "Suite",
       price: 5500,
-      image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+      image:
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
       desc: "Luxury suite with living area & best views."
     }
   ];
@@ -60,6 +61,7 @@ export default function GuestDashboard() {
     }
   }, []);
 
+  // Price calculation
   useEffect(() => {
     if (formData.checkInDate && formData.checkOutDate) {
       const inDate = new Date(formData.checkInDate);
@@ -73,6 +75,7 @@ export default function GuestDashboard() {
 
         let price = diff * roomPrice;
         if (formData.breakfast) price += diff * 300;
+
         setTotalPrice(price);
       } else {
         setNights(0);
@@ -124,54 +127,200 @@ export default function GuestDashboard() {
 
   return (
     <div className="guest-dashboard">
-      {/* SIDEBAR */}
-      <aside className={`sidebar ${open ? "open" : ""}`}>
-        <div className="sidebar-header">
-          <h2>Sunshine Hotel</h2>
-          <X onClick={() => setOpen(false)} />
-        </div>
-
-        <nav>
-          <button onClick={() => navigate("/guest-dashboard")}>Booking</button>
-          <button onClick={() => navigate("/hotel-info")}>Hotel Info</button>
-          <button onClick={() => navigate("/contact")}>Contact</button>
-          <button onClick={() => navigate("/feedback")}>Feedback</button>
-          <button onClick={() => navigate("/booking-status")}>Status</button>
-          <button className="exit" onClick={() => navigate("/")}>Exit</button>
-        </nav>
-      </aside>
-
-      {open && <div className="overlay" onClick={() => setOpen(false)} />}
-
-      {/* HEADER */}
+      {/* Header */}
       <header className="dashboard-header">
-        <button className="menu-btn" onClick={() => setOpen(true)}>
-          <Menu size={26} />
-        </button>
-
         <div className="header-left">
           <h1>Welcome, {username}</h1>
           <p>Premium Hotel Booking Experience</p>
         </div>
+       
+          {/* Right */}
+          <div className="flex items-center gap-4">
 
-        {/* Desktop buttons (unchanged logic) */}
-        <div className="header-right">
-          <button onClick={() => navigate("/guest-dashboard")}>Booking</button>
-          <button onClick={() => navigate("/hotel-info")}>Hotel Info</button>
-          <button onClick={() => navigate("/contact")}>Contact</button>
-          <button onClick={() => navigate("/feedback")}>Feedback</button>
-          <button onClick={() => navigate("/booking-status")}>Status</button>
-          <button className="exit" onClick={() => navigate("/")}>Exit</button>
+              <button
+              onClick={() => navigate("/guest-dashboard")}
+              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
+            >
+             Booking
+            </button>
+            
+            <button
+              onClick={() => navigate("/hotel-info")}
+              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
+            >
+              Hotel Info
+            </button>
+
+            <button
+              onClick={() => navigate("/contact")}
+              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
+            >
+              Contact
+            </button>
+
+            <button
+              onClick={() => navigate("/feedback")}
+              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
+            >
+              Feedback
+            </button>
+
+            <button
+              onClick={() => navigate("/booking-status")}
+              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
+            >
+              Booking Status
+            </button>
+          <button
+  onClick={() => navigate("/")}
+  className="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition shadow"
+>
+  Exit
+</button>
+
         </div>
       </header>
 
-      {/* MAIN */}
+      {/* Main */}
       <main className="dashboard-main">
-        {/* Room cards + booking form — UNCHANGED */}
-        {/* ⬇️ EXACT SAME JSX YOU ALREADY WROTE ⬇️ */}
-        {/* (No logic touched here) */}
+        {/* Room Selection */}
+        <section className="room-selection">
+          <h2>Choose Your Room</h2>
+          <div className="room-cards">
+            {roomTypes.map((room) => (
+              <label
+                key={room.id}
+                className={`room-card ${
+                  formData.roomType === room.id ? "selected" : ""
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="roomType"
+                  value={room.id}
+                  checked={formData.roomType === room.id}
+                  onChange={handleChange}
+                  hidden
+                />
+                <img src={room.image} alt={room.name} />
+                <div className="room-info">
+                  <h3>{room.name}</h3>
+                  <p>{room.desc}</p>
+                  <p className="room-price">₹{room.price} / night</p>
+                </div>
+              </label>
+            ))}
+          </div>
+        </section>
+
+        {/* Booking Form */}
+        <form onSubmit={handleSubmit} className="booking-form">
+  <h2>Booking Details</h2>
+
+  <div className="form-group">
+    <label>Guest Name</label>
+    <input
+      type="text"
+      name="name"
+      placeholder="Enter your full name"
+      value={formData.name}
+      onChange={handleChange}
+      required
+    />
+  </div>
+
+  <div className="form-group">
+    <label>Email Address</label>
+    <input
+      type="email"
+      name="email"
+      placeholder="example@email.com"
+      value={formData.email}
+      onChange={handleChange}
+      required
+    />
+  </div>
+
+  <div className="form-group">
+    <label>Phone Number</label>
+    <input
+      type="tel"
+      name="phone"
+      placeholder="10-digit mobile number"
+      value={formData.phone}
+      onChange={handleChange}
+      required
+    />
+  </div>
+
+  <div className="date-inputs">
+    <div className="form-group">
+      <label>Check-in</label>
+      <input
+        type="date"
+        name="checkInDate"
+        value={formData.checkInDate}
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    <div className="form-group">
+      <label>Check-out</label>
+      <input
+        type="date"
+        name="checkOutDate"
+        value={formData.checkOutDate}
+        onChange={handleChange}
+        required
+      />
+    </div>
+  </div>
+
+  <div className="form-group">
+    <label>Number of Guests</label>
+    <input
+      type="number"
+      name="guests"
+      min="1"
+      placeholder="e.g. 2"
+      value={formData.guests}
+      onChange={handleChange}
+    />
+  </div>
+
+  <label className="checkbox-label">
+    <input
+      type="checkbox"
+      name="breakfast"
+      checked={formData.breakfast}
+      onChange={handleChange}
+    />
+    Include Breakfast (+₹300/day)
+  </label>
+
+  <div className="form-group">
+    <label>Special Requests</label>
+    <textarea
+      name="specialRequest"
+      placeholder="Any special requests (optional)"
+      value={formData.specialRequest}
+      onChange={handleChange}
+      rows="3"
+    />
+  </div>
+
+  <div className="price-summary">
+    <p>Nights: <b>{nights}</b></p>
+    <p>Total Amount: <b>₹{totalPrice}</b></p>
+  </div>
+
+  <button type="submit">Confirm Booking</button>
+</form>
+
       </main>
 
+      {/* Footer */}
       <footer className="dashboard-footer">
         © 2026 Sunshine Hotel · Premium Guest Experience
       </footer>
