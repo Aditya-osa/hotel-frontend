@@ -135,17 +135,23 @@ export default function GuestDashboard() {
             className="active"
             onClick={() => navigate("/guest-dashboard")}
           >
-            Booking
+            🏠 Booking
           </button>
-          <button onClick={() => navigate("/hotel-info")}>Hotel Info</button>
-          <button onClick={() => navigate("/contact")}>Contact</button>
-          <button onClick={() => navigate("/feedback")}>Feedback</button>
+          <button onClick={() => navigate("/hotel-info")}>
+            ℹ️ Hotel Info
+          </button>
+          <button onClick={() => navigate("/contact")}>
+            📞 Contact
+          </button>
+          <button onClick={() => navigate("/feedback")}>
+            💬 Feedback
+          </button>
           <button onClick={() => navigate("/booking-status")}>
-            Booking Status
+            📋 Booking Status
           </button>
         </nav>
         <button className="exit-btn" onClick={() => navigate("/")}>
-          Exit
+          🚪 Exit
         </button>
       </aside>
 
