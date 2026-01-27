@@ -221,8 +221,8 @@ export default function GuestDashboard() {
           <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
 
           <div className="date-inputs">
-            <input type="date" name="checkInDate" value={formData.checkInDate} onChange={handleChange} required />
-            <input type="date" name="checkOutDate" value={formData.checkOutDate} onChange={handleChange} required />
+            <input type="date" name="checkInDate"  value={formData.checkInDate} onChange={handleChange} required >Date of Check-in</input>
+            <input type="date" name="checkOutDate" value={formData.checkOutDate} onChange={handleChange} required >Date of Check-out</input>
           </div>
 
           <input type="number" name="guests" min="1" placeholder="Number of Guests" value={formData.guests} onChange={handleChange} />
