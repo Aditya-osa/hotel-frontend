@@ -1,8 +1,62 @@
-/* Layout */
+/* Base Styles */
 .guest-dashboard {
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #d9f2e6, #a7f3d0); /* Soft medium green gradient */
+  background: linear-gradient(135deg, #d9f2e6, #a7f3d0);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Main Container */
+.main-container {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  /* Make all sections full width on mobile */
+  .room-section,
+  .booking-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Fix header padding on mobile */
+  .dashboard-header {
+    padding: 1.5rem 1rem !important;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  /* Make form inputs full width on mobile */
+  input,
+  select,
+  textarea,
+  button {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  /* Adjust card layout */
+  .room-card {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+  
+  /* Fix form layout */
+  .booking-form {
+    padding: 1rem !important;
+  }
 }
 
 /* Header */
@@ -11,10 +65,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 30px 50px;
-  background: linear-gradient(to right, #2bd447, #047857); /* Emerald gradient */
+  background: linear-gradient(to right, #2bd447, #047857);
   color: #ffffff;
   border-radius: 0 0 25px 25px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
 }
 .dashboard-header h1 {
   font-size: 2.2rem;
