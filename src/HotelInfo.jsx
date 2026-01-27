@@ -15,11 +15,11 @@ export default function HotelInfo() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-emerald-50 via-green-100 to-teal-50">
+    <div className="flex min-h-screen bg-emerald-50 overflow-x-hidden">
 
       {/* ================= SIDEBAR ================= */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-gradient-to-b from-emerald-900 to-emerald-800 text-white
+        className={`fixed inset-y-0 left-0 z-40 w-64 bg-emerald-900 text-white
         transform ${open ? "translate-x-0" : "-translate-x-full"}
         transition-transform duration-300 lg:translate-x-0 lg:static`}
       >
@@ -29,7 +29,15 @@ export default function HotelInfo() {
             className="w-10 h-10 rounded-full"
             alt="logo"
           />
-          <h2 className="text-lg font-bold">Sunshine Hotel</h2>
+          <h2 className="text-lg font-semibold">Sunshine Hotel</h2>
+
+          {/* Close Button (Mobile) */}
+          <button
+            onClick={() => setOpen(false)}
+            className="ml-auto lg:hidden"
+          >
+            <X />
+          </button>
         </div>
 
         <nav className="px-4 py-6 space-y-2">
@@ -40,7 +48,7 @@ export default function HotelInfo() {
                 navigate(item.path);
                 setOpen(false);
               }}
-              className="w-full text-left px-4 py-3 rounded-xl hover:bg-emerald-700 transition"
+              className="w-full text-left px-4 py-3 rounded-lg hover:bg-emerald-700 transition"
             >
               {item.label}
             </button>
@@ -48,7 +56,7 @@ export default function HotelInfo() {
 
           <button
             onClick={() => navigate("/")}
-            className="w-full mt-4 bg-red-500 hover:bg-red-600 px-4 py-3 rounded-xl"
+            className="w-full mt-4 bg-red-500 hover:bg-red-600 px-4 py-3 rounded-lg"
           >
             Exit
           </button>
@@ -67,7 +75,7 @@ export default function HotelInfo() {
       <div className="flex-1 lg:ml-64">
 
         {/* Mobile Header */}
-        <header className="lg:hidden sticky top-0 z-20 bg-emerald-700 text-white shadow">
+        <header className="lg:hidden sticky top-0 z-20 bg-emerald-700 text-white">
           <div className="flex items-center justify-between px-4 py-3">
             <button onClick={() => setOpen(true)}>
               <Menu size={26} />
@@ -76,50 +84,30 @@ export default function HotelInfo() {
           </div>
         </header>
 
-        {/* ================= YOUR ORIGINAL CONTENT ================= */}
-        <div className="min-h-screen">
+        {/* ================= CONTENT ================= */}
+        <main className="w-full">
 
-          {/* ================= HEADER ================= */}
-          <header className="hidden lg:block bg-emerald-700 text-white sticky top-0 z-10 shadow-lg">
-            <div className="max-w-6xl mx-auto flex justify-between items-center py-3 px-6">
-              <div className="flex items-center gap-3">
-                <img
-                  src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
-                  className="w-12 h-12 rounded-full"
-                  alt="Hotel Logo"
-                />
-                <h1 className="text-2xl font-bold">Sunshine Hotel</h1>
-              </div>
-            </div>
-          </header>
-
-          {/* ================= HERO ================= */}
-          <section className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-xl">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 text-center">
-              <h1 className="text-3xl sm:text-5xl font-extrabold mb-4">
-                Sunshine Hotel
-              </h1>
-              <p className="text-emerald-100 max-w-2xl mx-auto text-base sm:text-lg">
-                Experience comfort, elegance, and world-class hospitality in the
-                heart of the city.
-              </p>
-            </div>
+          {/* HERO */}
+          <section className="bg-emerald-700 text-white text-center px-4 py-14 sm:py-20">
+            <h1 className="text-3xl sm:text-5xl font-extrabold mb-4">
+              Sunshine Hotel
+            </h1>
+            <p className="max-w-2xl mx-auto text-emerald-100 text-sm sm:text-lg">
+              Comfort, elegance, and world-class hospitality in the heart of the city.
+            </p>
           </section>
 
-          {/* ================= ABOUT ================= */}
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 py-14 grid md:grid-cols-2 gap-10">
+          {/* ABOUT */}
+          <section className="max-w-6xl mx-auto px-4 py-14 grid md:grid-cols-2 gap-10">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-emerald-700 mb-4">
                 About Our Hotel
               </h2>
-              <p className="text-slate-600 mb-4 leading-relaxed text-base sm:text-lg">
-                Sunshine Hotel is designed for travelers who seek comfort,
-                convenience, and premium service. Whether you are visiting for
-                business or leisure, we ensure a memorable stay.
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Sunshine Hotel is designed for travelers who seek comfort and premium service.
               </p>
-              <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
-                Modern interiors, luxury rooms, and dedicated staff make every
-                guest feel at home.
+              <p className="text-slate-600 leading-relaxed">
+                Luxury rooms, modern interiors, and dedicated staff.
               </p>
             </div>
 
@@ -132,12 +120,12 @@ export default function HotelInfo() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg text-center border border-emerald-100"
+                  className="bg-white p-6 rounded-xl shadow text-center"
                 >
-                  <h3 className="text-3xl sm:text-4xl font-extrabold text-emerald-600">
+                  <h3 className="text-3xl font-bold text-emerald-600">
                     {item.title}
                   </h3>
-                  <p className="text-slate-500 mt-2 text-xs sm:text-sm">
+                  <p className="text-slate-500 text-sm mt-1">
                     {item.label}
                   </p>
                 </div>
@@ -145,9 +133,9 @@ export default function HotelInfo() {
             </div>
           </section>
 
-          {/* ================= AMENITIES ================= */}
-          <section className="bg-white py-14 border-t border-emerald-100">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* AMENITIES */}
+          <section className="bg-white py-14 border-t">
+            <div className="max-w-6xl mx-auto px-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-emerald-700 text-center mb-10">
                 Our Amenities
               </h2>
@@ -163,7 +151,7 @@ export default function HotelInfo() {
                 ].map((amenity, index) => (
                   <div
                     key={index}
-                    className="bg-gradient-to-br from-emerald-50 to-green-100 border border-emerald-200 p-6 rounded-2xl text-center font-semibold text-emerald-800 shadow-md"
+                    className="bg-emerald-50 border p-5 rounded-xl text-center font-semibold text-emerald-800"
                   >
                     {amenity}
                   </div>
@@ -172,31 +160,28 @@ export default function HotelInfo() {
             </div>
           </section>
 
-          {/* ================= CTA ================= */}
-          <section className="py-16 sm:py-20 text-center bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
+          {/* CTA */}
+          <section className="py-16 text-center bg-emerald-700 text-white">
             <h2 className="text-2xl sm:text-3xl font-bold mb-3">
               Ready to Book Your Stay?
             </h2>
-            <p className="text-emerald-100 mb-8 text-base sm:text-lg">
+            <p className="text-emerald-100 mb-6">
               Premium comfort & exceptional service await you.
             </p>
             <button
               onClick={() => window.history.back()}
-              className="bg-white text-emerald-800 px-8 sm:px-10 py-3 sm:py-4 rounded-xl font-bold"
+              className="bg-white text-emerald-800 px-8 py-3 rounded-lg font-bold"
             >
               Back to Booking
             </button>
           </section>
 
-          {/* ================= FOOTER ================= */}
-          <footer className="bg-emerald-950 text-emerald-200 py-6 text-center">
+          {/* FOOTER */}
+          <footer className="bg-emerald-950 text-emerald-300 py-6 text-center">
             <p className="text-sm">© 2026 Sunshine Hotel</p>
-            <p className="text-[11px] uppercase tracking-widest text-emerald-400 mt-1">
-              Premium Hospitality Experience
-            </p>
           </footer>
 
-        </div>
+        </main>
       </div>
     </div>
   );
