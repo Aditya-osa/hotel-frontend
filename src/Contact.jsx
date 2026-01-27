@@ -5,139 +5,110 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 to-emerald-50">
-{/* HEADER */}
-<header className="fixed top-0 left-0 w-full h-20 bg-green-600 text-white z-50 shadow-md flex items-center px-6">
-  
-  {/* Logo */}
-  <div className="flex items-center gap-3 flex-shrink-0">
-    <img
-      src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
-      alt="Hotel Logo"
-      className="w-9 h-9 rounded-full"
-    />
-    <h1 className="text-xl font-bold whitespace-nowrap">
-      Sunshine Hotel
-    </h1>
-  </div>
-
-  {/* Buttons */}
-  <div className="flex gap-3 ml-auto flex-nowrap overflow-x-auto">
-     <div className="flex items-center gap-4">
-
-              <button
-              onClick={() => navigate("/guest-dashboard")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-             Booking
-            </button>
-            
-            <button
-              onClick={() => navigate("/hotel-info")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Hotel Info
-            </button>
-
-            <button
-              onClick={() => navigate("/contact")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Contact
-            </button>
-
-            <button
-              onClick={() => navigate("/feedback")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Feedback
-            </button>
-
-            <button
-              onClick={() => navigate("/booking-status")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Booking Status
-            </button>
-            <button
-  onClick={() => navigate("/")}
-  className="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition shadow"
->
-  Exit
-</button>
-
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 w-full bg-green-600 text-white z-50 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center gap-4 px-4 py-4 overflow-x-auto">
+          
+          {/* Logo */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <img
+              src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
+              alt="Hotel Logo"
+              className="w-8 h-8 rounded-full"
+            />
+            <h1 className="text-lg sm:text-xl font-bold whitespace-nowrap">
+              Sunshine Hotel
+            </h1>
           </div>
-  </div>
 
-</header>
-<br/><br/><br/><br/><br/> 
+          {/* Navigation Buttons */}
+          <div className="flex gap-2 ml-auto flex-nowrap">
+            {[
+              ["Booking", "/guest-dashboard"],
+              ["Hotel Info", "/hotel-info"],
+              ["Contact", "/contact"],
+              ["Feedback", "/feedback"],
+              ["Status", "/booking-status"],
+            ].map(([label, path]) => (
+              <button
+                key={label}
+                onClick={() => navigate(path)}
+                className="bg-white text-green-700 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-green-100 transition shadow whitespace-nowrap"
+              >
+                {label}
+              </button>
+            ))}
 
-      {/* CONTENT */}
-      <div className="p-8">
+            <button
+              onClick={() => navigate("/")}
+              className="bg-red-500 text-white px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-red-600 transition shadow whitespace-nowrap"
+            >
+              Exit
+            </button>
+          </div>
+        </div>
+      </header>
 
-        {/* Hero Section */}
+      {/* PAGE CONTENT */}
+      <main className="pt-28 px-4 sm:px-6 pb-12">
+        {/* Hero */}
         <section className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-emerald-700 mb-4">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-emerald-700 mb-3">
             Contact Sunshine Hotel
           </h1>
-          <p className="text-slate-600 max-w-xl mx-auto">
-            We're here to assist you 24/7. Reach out to us via phone, email, or visit us directly.
+          <p className="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
+            We're here to assist you 24/7. Reach out via phone, email, or visit us.
           </p>
         </section>
 
         {/* Contact Cards */}
-        <section className="max-w-6xl mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-2xl shadow-md text-center">
-            <h2 className="text-xl font-bold text-emerald-600 mb-2">Address</h2>
-            <p className="text-slate-600">
-              Sunshine Hotel<br />
-              123 Sunshine Avenue<br />
-              Mumbai, Maharashtra, India
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow-md text-center">
-            <h2 className="text-xl font-bold text-emerald-600 mb-2">Phone</h2>
-            <p className="text-slate-600">
-              +91 98765 43210<br />
-              +91 91234 56789
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow-md text-center">
-            <h2 className="text-xl font-bold text-emerald-600 mb-2">Email</h2>
-            <p className="text-slate-600">
-              reservations@sunshinehotel.com<br />
-              support@sunshinehotel.com
-            </p>
-          </div>
+        <section className="max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+          {[
+            ["Address", "Sunshine Hotel\n123 Sunshine Avenue\nMumbai, India"],
+            ["Phone", "+91 98765 43210\n+91 91234 56789"],
+            ["Email", "reservations@sunshinehotel.com\nsupport@sunshinehotel.com"],
+          ].map(([title, content]) => (
+            <div
+              key={title}
+              className="bg-white p-6 rounded-2xl shadow-md text-center"
+            >
+              <h2 className="text-lg font-bold text-emerald-600 mb-2">
+                {title}
+              </h2>
+              <p className="text-slate-600 whitespace-pre-line text-sm sm:text-base">
+                {content}
+              </p>
+            </div>
+          ))}
         </section>
 
         {/* Map */}
-       <section className="mt-16 max-w-6xl mx-auto px-6">
-  <h2 className="text-3xl font-extrabold text-emerald-700 text-center mb-3">
-    Find Us Here
-  </h2>
-  <p className="text-center text-slate-600 mb-8">
-    Located in the heart of Mumbai for easy access & comfort
-  </p>
-{/* Map */}
-<div className="w-full h-72 rounded-3xl overflow-hidden shadow-xl mb-16">
-  <iframe
-    title="hotel-map"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.8235600311516!2d72.8777!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c63f4b9c7f7f%3A0x0!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
-    width="100%"
-    height="100%"
-    style={{ border: 0 }}
-    loading="lazy"
-  />
-</div></section> 
-    <footer className="bg-emerald-950 text-emerald-200 py-6 text-center">
+        <section className="mt-16 max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-emerald-700 text-center mb-2">
+            Find Us Here
+          </h2>
+          <p className="text-center text-slate-600 mb-6 text-sm sm:text-base">
+            Located in the heart of Mumbai for easy access
+          </p>
+
+          <div className="w-full h-64 sm:h-80 rounded-3xl overflow-hidden shadow-xl">
+            <iframe
+              title="hotel-map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.8235600311516!2d72.8777!3d19.0760"
+              className="w-full h-full border-0"
+              loading="lazy"
+            />
+          </div>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="bg-emerald-950 text-emerald-200 py-6 text-center">
         <p className="text-sm">© 2026 Sunshine Hotel</p>
         <p className="text-[11px] uppercase tracking-widest text-emerald-400 mt-1">
           Premium Hospitality Experience
         </p>
       </footer>
-     </div>
     </div>
   );
 }

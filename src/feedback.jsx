@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "./config";
 
 export default function Feedback() {
-  const navigate = useNavigate(); // ✅ FIX: define navigate
+  const navigate = useNavigate();
 
   const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState({
@@ -29,7 +29,6 @@ export default function Feedback() {
       const data = await res.json();
       alert(data.message);
 
-      // reset form
       setFormData({ name: "", mobile: "", feedback: "" });
       setRating(0);
     } catch (error) {
@@ -43,79 +42,59 @@ export default function Feedback() {
 
       {/* ================= HEADER ================= */}
       <header className="bg-green-600 text-white sticky top-0 z-50 shadow-md">
-        <div className="flex justify-between items-center py-4 px-6">
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3 py-3 px-4 sm:px-6">
 
-          {/* Left */}
+          {/* Logo */}
           <div className="flex items-center gap-3">
             <img
               src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
               alt="Hotel Logo"
-              className="w-10 h-10 rounded-full"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full"
             />
             <div>
-              <h1 className="text-2xl font-bold tracking-wide">
+              <h1 className="text-lg sm:text-xl font-bold">
                 Sunshine Hotel
               </h1>
-              <p className="text-xs text-green-100">
+              <p className="text-[10px] sm:text-xs text-green-100">
                 Premium Hotel Booking Experience
               </p>
             </div>
           </div>
 
-          {/* Right */}
-          <div className="flex items-center gap-4">
-
+          {/* Navigation */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              { label: "Booking", path: "/guest-dashboard" },
+              { label: "Hotel Info", path: "/hotel-info" },
+              { label: "Contact", path: "/contact" },
+              { label: "Feedback", path: "/feedback" },
+              { label: "Status", path: "/booking-status" }
+            ].map((item, i) => (
               <button
-              onClick={() => navigate("/guest-dashboard")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-             Booking
-            </button>
-            
-            <button
-              onClick={() => navigate("/hotel-info")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Hotel Info
-            </button>
+                key={i}
+                onClick={() => navigate(item.path)}
+                className="bg-white text-green-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold hover:bg-green-100 transition shadow"
+              >
+                {item.label}
+              </button>
+            ))}
 
             <button
-              onClick={() => navigate("/contact")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
+              onClick={() => navigate("/")}
+              className="bg-red-500 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold hover:bg-red-600 transition shadow"
             >
-              Contact
+              Exit
             </button>
-
-            <button
-              onClick={() => navigate("/feedback")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Feedback
-            </button>
-
-            <button
-              onClick={() => navigate("/booking-status")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Booking Status
-            </button>
-            <button
-  onClick={() => navigate("/")}
-  className="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition shadow"
->
-  Exit
-</button>
-
           </div>
         </div>
       </header>
 
       {/* ================= MAIN ================= */}
-      <main className="flex-grow flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
+      <main className="flex-grow flex items-center justify-center px-4 py-8 sm:py-12 relative">
 
-        {/* Glow background */}
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-green-300/40 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-green-400/30 rounded-full blur-3xl"></div>
+        {/* Soft glow background */}
+        <div className="absolute -top-32 -left-32 w-80 h-80 bg-green-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-green-400/30 rounded-full blur-3xl"></div>
 
         <form
           onSubmit={handleSubmit}
@@ -157,8 +136,10 @@ export default function Feedback() {
                   key={star}
                   type="button"
                   onClick={() => setRating(star)}
-                  className={`text-4xl transition-transform ${
-                    star <= rating ? "text-green-500 scale-110" : "text-gray-300"
+                  className={`text-3xl sm:text-4xl transition-transform ${
+                    star <= rating
+                      ? "text-green-500 scale-110"
+                      : "text-gray-300"
                   }`}
                 >
                   ★
@@ -177,14 +158,14 @@ export default function Feedback() {
             />
           </div>
 
-          <button className="w-full bg-green-500 text-white py-3.5 rounded-xl text-lg font-semibold hover:bg-green-600 transition shadow-md active:scale-95 mt-6">
+          <button className="w-full bg-green-500 text-white py-3.5 rounded-xl text-base sm:text-lg font-semibold hover:bg-green-600 transition shadow-md active:scale-95 mt-6">
             Submit Feedback
           </button>
         </form>
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-green-700 text-white py-6 px-4 text-center">
+      <footer className="bg-green-700 text-white py-5 px-4 text-center">
         <p className="text-sm">© 2026 Sunshine Hotel</p>
         <p className="text-[10px] uppercase tracking-widest font-bold mt-1 text-green-200">
           Guest Satisfaction & Quality Service

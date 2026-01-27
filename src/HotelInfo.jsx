@@ -6,110 +6,96 @@ export default function HotelInfo() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-100 to-teal-50">
 
-      {/* Header with Navigation */}
-      <header className="bg-emerald-600 text-white sticky top-0 z-50 shadow-md">
-        <div className="max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
-          {/* Left: Logo + Name */}
+      {/* ================= HEADER ================= */}
+      <header className="bg-emerald-700 text-white sticky top-0 z-50 shadow-lg">
+        <div className="max-w-6xl mx-auto flex flex-wrap gap-3 justify-between items-center py-3 px-4 sm:px-6">
+          
+          {/* Logo */}
           <div className="flex items-center gap-3">
             <img
               src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
               alt="Hotel Logo"
-              className="w-12 h-12 rounded-full"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full"
             />
-            <h1 className="text-2xl font-bold tracking-wide">Sunshine Hotel</h1>
+            <h1 className="text-lg sm:text-2xl font-bold tracking-wide">
+              Sunshine Hotel
+            </h1>
           </div>
 
-          {/* Right: Navigation Buttons */}
-          <div className="flex gap-4">
+          {/* Navigation */}
+          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+            {[
+              { label: "Booking", path: "/guest-dashboard" },
+              { label: "Hotel Info", path: "/hotel-info" },
+              { label: "Contact", path: "/contact" },
+              { label: "Feedback", path: "/feedback" },
+              { label: "Status", path: "/booking-status" }
+            ].map((item, i) => (
+              <button
+                key={i}
+                onClick={() => navigate(item.path)}
+                className="bg-white text-emerald-700 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-emerald-100 transition shadow"
+              >
+                {item.label}
+              </button>
+            ))}
 
-               <button
-              onClick={() => navigate("/guest-dashboard")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Booking
-            </button>
             <button
-              onClick={() => navigate("/hotel-info")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
+              onClick={() => navigate("/")}
+              className="bg-red-500 text-white px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-red-600 transition shadow"
             >
-              Hotel Info
+              Exit
             </button>
-            <button
-              onClick={() => navigate("/contact")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Contact
-            </button>
-            <button
-              onClick={() => navigate("/feedback")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Feedback
-            </button>
-            <button
-              onClick={() => navigate("/booking-status")}
-              className="bg-white text-green-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-100 transition shadow"
-            >
-              Booking Status
-            </button>
-            <button
-  onClick={() => navigate("/")}
-  className="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition shadow"
->
-  Exit
-</button>
-
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-emerald-600 to-emerald-600 text-white shadow-xl">
-        <div className="max-w-6xl mx-auto px-6 py-20 text-center">
-          <h1 className="text-5xl font-extrabold mb-4 tracking-wide">
+      {/* ================= HERO ================= */}
+      <section className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-xl">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 text-center">
+          <h1 className="text-3xl sm:text-5xl font-extrabold mb-4">
             Sunshine Hotel
           </h1>
-          <p className="text-emerald-100 max-w-2xl mx-auto text-lg">
+          <p className="text-emerald-100 max-w-2xl mx-auto text-base sm:text-lg">
             Experience comfort, elegance, and world-class hospitality in the
             heart of the city.
           </p>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
+      {/* ================= ABOUT ================= */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-14 grid md:grid-cols-2 gap-10">
         <div>
-          <h2 className="text-3xl font-bold text-emerald-700 mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-emerald-700 mb-4">
             About Our Hotel
           </h2>
-          <p className="text-slate-600 mb-4 leading-relaxed text-lg">
+          <p className="text-slate-600 mb-4 leading-relaxed text-base sm:text-lg">
             Sunshine Hotel is designed for travelers who seek comfort,
             convenience, and premium service. Whether you are visiting for
-            business or leisure, our hotel ensures a memorable stay with
-            personalized hospitality.
+            business or leisure, we ensure a memorable stay.
           </p>
-          <p className="text-slate-600 leading-relaxed text-lg">
-            With modern interiors, luxury rooms, and dedicated staff, we focus
-            on making every guest feel at home.
+          <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
+            Modern interiors, luxury rooms, and dedicated staff make every guest
+            feel at home.
           </p>
         </div>
 
-        {/* Highlights */}
-        <div className="grid grid-cols-2 gap-6">
+        {/* Stats */}
+        <div className="grid grid-cols-2 gap-5">
           {[
             { title: "500+", label: "Happy Guests" },
             { title: "50+", label: "Luxury Rooms" },
-            { title: "24×7", label: "Service Support" },
-            { title: "4.8★", label: "Guest Rating" }
+            { title: "24×7", label: "Support" },
+            { title: "4.8★", label: "Rating" }
           ].map((item, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-2xl shadow-lg text-center border border-emerald-100 hover:shadow-xl transition"
+              className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg text-center border border-emerald-100 hover:shadow-xl transition"
             >
-              <h3 className="text-4xl font-extrabold text-emerald-600">
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-emerald-600">
                 {item.title}
               </h3>
-              <p className="text-slate-500 mt-2 text-sm uppercase tracking-wide">
+              <p className="text-slate-500 mt-2 text-xs sm:text-sm uppercase tracking-wide">
                 {item.label}
               </p>
             </div>
@@ -117,21 +103,21 @@ export default function HotelInfo() {
         </div>
       </section>
 
-      {/* Amenities */}
-      <section className="bg-white py-16 border-t border-emerald-100">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-emerald-700 text-center mb-12">
+      {/* ================= AMENITIES ================= */}
+      <section className="bg-white py-14 border-t border-emerald-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-emerald-700 text-center mb-10">
             Our Amenities
           </h2>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
               "24×7 Room Service",
               "Free High-Speed Wi-Fi",
               "Luxury Rooms & Suites",
               "In-House Restaurant",
               "Airport Pickup & Drop",
-              "Secure Parking Facility"
+              "Secure Parking"
             ].map((amenity, index) => (
               <div
                 key={index}
@@ -144,23 +130,23 @@ export default function HotelInfo() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 text-center bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
-        <h2 className="text-3xl font-bold mb-3">
+      {/* ================= CTA ================= */}
+      <section className="py-16 sm:py-20 text-center bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-3">
           Ready to Book Your Stay?
         </h2>
-        <p className="text-emerald-100 mb-8 text-lg">
-          Experience premium comfort and exceptional service.
+        <p className="text-emerald-100 mb-8 text-base sm:text-lg">
+          Premium comfort & exceptional service await you.
         </p>
         <button
           onClick={() => window.history.back()}
-          className="bg-white text-emerald-800 px-10 py-4 rounded-xl font-bold text-lg hover:bg-emerald-50 transition shadow-lg"
+          className="bg-white text-emerald-800 px-8 sm:px-10 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-emerald-50 transition shadow-lg"
         >
           Back to Booking
         </button>
       </section>
 
-      {/* Footer */}
+      {/* ================= FOOTER ================= */}
       <footer className="bg-emerald-950 text-emerald-200 py-6 text-center">
         <p className="text-sm">© 2026 Sunshine Hotel</p>
         <p className="text-[11px] uppercase tracking-widest text-emerald-400 mt-1">

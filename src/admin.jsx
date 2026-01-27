@@ -30,7 +30,7 @@ export default function Admin() {
       {/* Centered Header */}
       <header className="bg-white/80 backdrop-blur-md shadow-sm py-4 px-6 sticky top-0 z-50 border-b border-blue-100 flex justify-center items-center">
         <h2 className="text-xl font-bold text-blue-800 text-center">
-          Patil Bhandu Hospital
+          Sunshine Hotel
         </h2>
       </header>
 
@@ -100,7 +100,7 @@ export default function Admin() {
       {/* Centered Footer */}
       <footer className="bg-white/80 backdrop-blur-md py-6 px-4 border-t border-blue-100 flex flex-col items-center justify-center">
         <p className="text-gray-500 text-sm text-center">
-          © 2025 sunshine Hotel Management System
+          © 2025 Sunshine Hotel Management System
         </p>
         <p className="text-[10px] text-blue-400 mt-1 uppercase tracking-widest font-bold">
           Secure Portal
