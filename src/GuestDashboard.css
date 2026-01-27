@@ -13,14 +13,14 @@
 ===================== */
 .dashboard-sidebar {
   width: 260px;
-  background: #0f2e0f;
+  background: #065f46;
   color: #ffffff;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   transition: all 0.3s ease-in-out;
-  border-right: 1px solid #1a4d1a;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  border-right: 1px solid #047857;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
   position: fixed;
   left: 0;
   top: 0;
@@ -42,9 +42,9 @@
 
 .dashboard-sidebar .sidebar-header {
   padding: 20px;
-  background: #1a4d1a;
+  background: #047857;
   color: white;
-  border-bottom: 1px solid #2d6a2d;
+  border-bottom: 1px solid #059669;
 }
 
 .dashboard-sidebar h2 {
@@ -56,7 +56,7 @@
 
 .dashboard-sidebar p {
   font-size: 0.8rem;
-  color: #b8e6b8;
+  color: #a7f3d0;
   margin-top: 4px;
 }
 
@@ -78,18 +78,18 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #d4f1d4;
+  color: #d1fae5;
   transition: all 0.2s;
 }
 
 .dashboard-sidebar nav button:hover {
-  background: #1a4d1a;
+  background: #047857;
   color: #ffffff;
 }
 
 .dashboard-sidebar nav button.active {
-  background: #2d6a2d;
-  color: #ffffff;
+  background: #ffffff;
+  color: #065f46;
   font-weight: 600;
 }
 
@@ -97,7 +97,7 @@
 .dashboard-sidebar .exit-btn {
   margin: 15px 10px;
   padding: 12px 15px;
-  background: #dc2626;
+  background: #ef4444;
   color: #ffffff;
   border-radius: 6px;
   font-weight: 600;
@@ -109,7 +109,7 @@
 }
 
 .dashboard-sidebar .exit-btn:hover {
-  background: #b91c1c;
+  background: #dc2626;
 }
 
 /* Mobile Header */
