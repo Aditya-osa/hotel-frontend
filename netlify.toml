@@ -3,10 +3,9 @@
   publish = "dist"
 
 [build.environment]
-  VITE_API_URL = "=https://hotel-backend-y2u6.onrender.com"  # Replace with your Render URL
+  VITE_API_URL = "https://hotel-backend-y2u6.onrender.com"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  "@ | Set-Content -Path .\netlify.toml -Force
