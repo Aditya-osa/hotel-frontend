@@ -4,7 +4,7 @@ import Admin from "./admin";
 import AdminDashboard from "./adminDashboard";
 import HotelInfo from "./HotelInfo"; // Previously HospitalInfo
 import GuestDashboard from "./GuestDashboard"; // Dashboard after login
-import BookingStatus from "./bookingStatus"; // Appointment status
+import BookingStatus from "./BookingStatus"; // Appointment status
 import OrderFood from "./foodOrder"; // Renamed for hotel context
 import Payment from "./Payment"; // Insurance module as hotel payment
 import Feedback from "./feedback";
