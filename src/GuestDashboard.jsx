@@ -215,30 +215,109 @@ export default function GuestDashboard() {
 
         {/* Booking Form */}
         <form onSubmit={handleSubmit} className="booking-form">
-          <h2>Booking Details</h2>
-          <input type="text" name="name" placeholder="Guest Name" value={formData.name} onChange={handleChange} required />
-          <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
-          <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
+  <h2>Booking Details</h2>
 
-          <div className="date-inputs">
-            <input type="date" name="checkInDate"  value={formData.checkInDate} onChange={handleChange} required />
-            <input type="date" name="checkOutDate" value={formData.checkOutDate} onChange={handleChange} required />
-          </div>
+  <div className="form-group">
+    <label>Guest Name</label>
+    <input
+      type="text"
+      name="name"
+      placeholder="Enter your full name"
+      value={formData.name}
+      onChange={handleChange}
+      required
+    />
+  </div>
 
-          <input type="number" name="guests" min="1" placeholder="Number of Guests" value={formData.guests} onChange={handleChange} />
-          <label className="checkbox-label">
-            <input type="checkbox" name="breakfast" checked={formData.breakfast} onChange={handleChange} />
-            Breakfast (+₹300/day)
-          </label>
-          <textarea name="specialRequest" placeholder="Any special requests?" value={formData.specialRequest} onChange={handleChange} />
+  <div className="form-group">
+    <label>Email Address</label>
+    <input
+      type="email"
+      name="email"
+      placeholder="example@email.com"
+      value={formData.email}
+      onChange={handleChange}
+      required
+    />
+  </div>
 
-          <div className="price-summary">
-            <p>Nights: <b>{nights}</b></p>
-            <p>Total: ₹{totalPrice}</p>
-          </div>
+  <div className="form-group">
+    <label>Phone Number</label>
+    <input
+      type="tel"
+      name="phone"
+      placeholder="10-digit mobile number"
+      value={formData.phone}
+      onChange={handleChange}
+      required
+    />
+  </div>
 
-          <button type="submit">Confirm Booking</button>
-        </form>
+  <div className="date-inputs">
+    <div className="form-group">
+      <label>Check-in</label>
+      <input
+        type="date"
+        name="checkInDate"
+        value={formData.checkInDate}
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    <div className="form-group">
+      <label>Check-out</label>
+      <input
+        type="date"
+        name="checkOutDate"
+        value={formData.checkOutDate}
+        onChange={handleChange}
+        required
+      />
+    </div>
+  </div>
+
+  <div className="form-group">
+    <label>Number of Guests</label>
+    <input
+      type="number"
+      name="guests"
+      min="1"
+      placeholder="e.g. 2"
+      value={formData.guests}
+      onChange={handleChange}
+    />
+  </div>
+
+  <label className="checkbox-label">
+    <input
+      type="checkbox"
+      name="breakfast"
+      checked={formData.breakfast}
+      onChange={handleChange}
+    />
+    Include Breakfast (+₹300/day)
+  </label>
+
+  <div className="form-group">
+    <label>Special Requests</label>
+    <textarea
+      name="specialRequest"
+      placeholder="Any special requests (optional)"
+      value={formData.specialRequest}
+      onChange={handleChange}
+      rows="3"
+    />
+  </div>
+
+  <div className="price-summary">
+    <p>Nights: <b>{nights}</b></p>
+    <p>Total Amount: <b>₹{totalPrice}</b></p>
+  </div>
+
+  <button type="submit">Confirm Booking</button>
+</form>
+
       </main>
 
       {/* Footer */}

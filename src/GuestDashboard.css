@@ -112,81 +112,112 @@
 /* =====================
    BOOKING FORM
 ===================== */
+
 .booking-form {
   background: #ffffff;
-  padding: 35px;
-  border-radius: 22px;
-  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+  padding: 38px;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
+/* Title */
 .booking-form h2 {
   font-weight: 800;
   color: #065f46;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  margin-bottom: 6px;
 }
 
+/* Inputs & Textarea */
 .booking-form input,
 .booking-form textarea {
-  padding: 15px;
-  border: 1px solid #bbf7d0;
+  padding: 15px 16px;
+  border: 1.5px solid #bbf7d0;
   border-radius: 14px;
   outline: none;
-  transition: all 0.3s;
   font-size: 0.95rem;
   width: 100%;
+  background: #f9fffc;
+  transition: border 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
+.booking-form textarea {
+  resize: none;
+  min-height: 90px;
+}
+
+/* Focus State */
 .booking-form input:focus,
 .booking-form textarea:focus {
   border-color: #10b981;
-  box-shadow: 0 0 0 4px rgba(16,185,129,0.15);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.18);
 }
 
+/* Checkbox */
 .checkbox-label {
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 0.95rem;
+  font-weight: 600;
   color: #374151;
 }
 
+.checkbox-label input {
+  accent-color: #10b981;
+  width: 16px;
+  height: 16px;
+}
+
+/* Date Inputs */
 .date-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
+/* Price Summary */
 .price-summary {
-  background: #bbf7d0;
-  padding: 15px;
-  border-radius: 14px;
-  font-weight: 600;
+  background: linear-gradient(135deg, #bbf7d0, #86efac);
+  padding: 16px 18px;
+  border-radius: 16px;
+  font-weight: 700;
   color: #065f46;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: inset 0 0 12px rgba(16, 185, 129, 0.12);
 }
 
+/* Button */
 .booking-form button {
-  padding: 15px;
-  font-weight: 700;
+  margin-top: 8px;
+  padding: 16px;
+  font-weight: 800;
   background: linear-gradient(to right, #10b981, #047857);
   color: #ffffff;
-  border-radius: 16px;
+  border-radius: 18px;
   border: none;
   cursor: pointer;
   font-size: 1.05rem;
-  transition: all 0.3s;
+  letter-spacing: 0.3px;
+  transition: transform 0.25s, box-shadow 0.25s, opacity 0.25s;
 }
 
 .booking-form button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(16, 185, 129, 0.35);
   opacity: 0.95;
 }
 
 /* =====================
    FOOTER
 ===================== */
+
 .dashboard-footer {
   text-align: center;
   padding: 30px 15px;
@@ -210,6 +241,24 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+  .booking-form {
+    padding: 26px;
+  }
+
+  .booking-form h2 {
+    font-size: 1.3rem;
+  }
+
+  .date-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .price-summary {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
   .dashboard-header {
     padding: 20px;
     align-items: flex-start;
@@ -236,24 +285,21 @@
     width: 100%;
     height: 170px;
   }
-
-  .booking-form {
-    padding: 25px;
-  }
-
-  .date-inputs {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Small Phones */
 @media (max-width: 480px) {
+  .booking-form {
+    padding: 22px;
+  }
+
   .booking-form h2 {
     font-size: 1.2rem;
   }
 
   .booking-form button {
     font-size: 1rem;
+    padding: 15px;
   }
 
   .dashboard-footer {
