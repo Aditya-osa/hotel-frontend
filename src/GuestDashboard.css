@@ -2,7 +2,7 @@
 .guest-dashboard {
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #d9f2e6, #a7f3d0); /* Soft medium green gradient */
+  background: linear-gradient(135deg, #d9f2e6, #a7f3d0);
 }
 
 /* Header */
@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 30px 50px;
-  background: linear-gradient(to right, #2bd447, #047857); /* Emerald gradient */
+  background: linear-gradient(to right, #2bd447, #047857);
   color: #ffffff;
   border-radius: 0 0 25px 25px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -70,7 +70,7 @@
 }
 .room-info h3 {
   font-weight: 700;
-  color: #065f46; /* Dark emerald */
+  color: #065f46;
   font-size: 1.1rem;
   margin-bottom: 6px;
 }
@@ -158,4 +158,70 @@
   border-top: 1px solid #bbf7d0;
   background: linear-gradient(to right, #0d2118, #11a962);
   font-weight: 600;
+}
+
+/* ===================== */
+/* 📱 RESPONSIVE DESIGN */
+/* ===================== */
+
+@media (max-width: 1024px) {
+  .dashboard-main {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 22px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-header p {
+    font-size: 1rem;
+  }
+
+  .room-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .room-card img {
+    width: 100%;
+    height: 160px;
+  }
+
+  .booking-form {
+    padding: 25px;
+  }
+
+  .date-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-main {
+    margin: 30px auto;
+    padding: 0 16px;
+  }
+
+  .booking-form h2 {
+    font-size: 1.2rem;
+  }
+
+  .booking-form button {
+    font-size: 1rem;
+  }
+
+  .dashboard-footer {
+    font-size: 0.9rem;
+    padding: 22px 10px;
+  }
 }
