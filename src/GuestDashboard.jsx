@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { API_BASE_URL } from "./config";
+import "./GuestDashboard.css";
 
 export default function GuestDashboard() {
   const navigate = useNavigate();
