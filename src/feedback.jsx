@@ -4,6 +4,7 @@ import { API_BASE_URL } from "./config";
 
 export default function Feedback() {
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState({
@@ -37,81 +38,121 @@ export default function Feedback() {
     }
   };
 
+  const menuItems = [
+    { label: "Booking", path: "/guest-dashboard" },
+    { label: "Hotel Info", path: "/hotel-info" },
+    { label: "Contact", path: "/contact" },
+    { label: "Feedback", path: "/feedback" },
+    { label: "Status", path: "/booking-status" }
+  ];
+
   return (
-    <div className="min-h-screen flex bg-gradient-to-br from-green-50 via-green-100 to-green-200">
+    <div className="flex min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-200">
 
-      {/* ================= SIDEBAR ================= */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-green-700 text-white shadow-xl z-50">
-        <div className="p-6 border-b border-green-600">
-          <h2 className="text-xl font-bold">Sunshine Hotel</h2>
-          <p className="text-xs text-green-200 mt-1">
-            Guest Dashboard
-          </p>
-        </div>
+      {/* ================= SIDEBAR (DESKTOP) ================= */}
+      <aside className="hidden md:flex w-64 bg-green-700 text-white flex-col p-5">
+        <h2 className="text-xl font-bold mb-8">Sunshine Hotel</h2>
 
-        <nav className="flex flex-col gap-2 p-4 text-sm">
-          {[
-            ["Booking", "/guest-dashboard"],
-            ["Hotel Info", "/hotel-info"],
-            ["Contact", "/contact"],
-            ["Feedback", "/feedback"],
-            ["Status", "/booking-status"]
-          ].map(([label, path]) => (
+        <nav className="space-y-3 flex-grow">
+          {menuItems.map((item) => (
             <button
-              key={label}
-              onClick={() => navigate(path)}
-              className="text-left px-4 py-2 rounded-lg hover:bg-green-600 transition"
+              key={item.label}
+              onClick={() => navigate(item.path)}
+              className="w-full text-left px-4 py-2 rounded-lg hover:bg-green-600 transition"
             >
-              {label}
+              {item.label}
             </button>
           ))}
-
-          <button
-            onClick={() => navigate("/")}
-            className="mt-4 bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 transition text-left"
-          >
-            Exit
-          </button>
         </nav>
+
+        <button
+          onClick={() => navigate("/")}
+          className="mt-auto bg-red-500 py-2 rounded-lg hover:bg-red-600 transition"
+        >
+          Exit
+        </button>
       </aside>
 
-      {/* ================= MAIN AREA ================= */}
-      <div className="flex-1 ml-64 flex flex-col min-h-screen">
+      {/* ================= MOBILE SIDEBAR ================= */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
 
-        {/* ================= HEADER (LOGO ONLY) ================= */}
-        <header className="bg-green-600 text-white shadow-md">
-          <div className="max-w-6xl mx-auto flex items-center gap-3 py-4 px-6">
-            <img
-              src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
-              alt="Hotel Logo"
-              className="w-10 h-10 rounded-full"
-            />
-            <div>
-              <h1 className="text-xl font-bold">Sunshine Hotel</h1>
-              <p className="text-xs text-green-100">
-                Premium Hotel Booking Experience
-              </p>
+          <div className="absolute left-0 top-0 h-full w-64 bg-green-700 text-white p-5">
+            <h2 className="text-xl font-bold mb-6">Sunshine Hotel</h2>
+
+            <nav className="space-y-3">
+              {menuItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => {
+                    navigate(item.path);
+                    setSidebarOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2 rounded-lg hover:bg-green-600"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+
+            <button
+              onClick={() => navigate("/")}
+              className="mt-6 w-full bg-red-500 py-2 rounded-lg"
+            >
+              Exit
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ================= MAIN CONTENT ================= */}
+      <div className="flex flex-col flex-grow">
+
+        {/* HEADER (NO NAV BUTTONS) */}
+        <header className="bg-green-600 text-white sticky top-0 z-40 shadow-md">
+          <div className="flex items-center gap-4 px-4 py-3">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="md:hidden text-2xl"
+            >
+              ☰
+            </button>
+
+            <div className="flex items-center gap-3">
+              <img
+                src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=50&q=50"
+                alt="Hotel Logo"
+                className="w-9 h-9 rounded-full"
+              />
+              <div>
+                <h1 className="text-lg font-bold">Sunshine Hotel</h1>
+                <p className="text-[11px] text-green-100">
+                  Guest Feedback Portal
+                </p>
+              </div>
             </div>
           </div>
         </header>
 
-        {/* ================= CONTENT ================= */}
-        <main className="flex-grow flex items-center justify-center px-4 py-12 relative">
-
-          {/* Glow */}
+        {/* ================= FEEDBACK FORM ================= */}
+        <main className="flex-grow flex items-center justify-center px-4 py-10 relative">
           <div className="absolute -top-32 -left-32 w-80 h-80 bg-green-300/30 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-green-400/30 rounded-full blur-3xl"></div>
 
           <form
             onSubmit={handleSubmit}
-            className="relative bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md border border-green-100"
+            className="relative bg-white shadow-2xl rounded-2xl p-6 sm:p-8 w-full max-w-md border border-green-100"
           >
-            <h2 className="text-3xl font-extrabold mb-2 text-center text-green-700">
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-center text-green-700">
               Guest Feedback
             </h2>
 
             <p className="text-center text-gray-600 mb-6">
-              Help us improve your stay experience 💚
+              Help us improve your stay 💚
             </p>
 
             <div className="space-y-4">
@@ -142,10 +183,8 @@ export default function Feedback() {
                     key={star}
                     type="button"
                     onClick={() => setRating(star)}
-                    className={`text-4xl transition-transform ${
-                      star <= rating
-                        ? "text-green-500 scale-110"
-                        : "text-gray-300"
+                    className={`text-3xl transition ${
+                      star <= rating ? "text-green-500 scale-110" : "text-gray-300"
                     }`}
                   >
                     ★
@@ -164,16 +203,16 @@ export default function Feedback() {
               />
             </div>
 
-            <button className="w-full bg-green-500 text-white py-3.5 rounded-xl text-lg font-semibold hover:bg-green-600 transition shadow-md active:scale-95 mt-6">
+            <button className="w-full bg-green-500 text-white py-3.5 rounded-xl text-lg font-semibold hover:bg-green-600 transition shadow-md mt-6">
               Submit Feedback
             </button>
           </form>
         </main>
 
         {/* ================= FOOTER ================= */}
-        <footer className="bg-green-700 text-white py-5 text-center">
+        <footer className="bg-green-700 text-white py-4 text-center">
           <p className="text-sm">© 2026 Sunshine Hotel</p>
-          <p className="text-[10px] uppercase tracking-widest font-bold mt-1 text-green-200">
+          <p className="text-[10px] uppercase tracking-widest text-green-200 mt-1">
             Guest Satisfaction & Quality Service
           </p>
         </footer>
