@@ -6,6 +6,7 @@
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   background: #f9fafb;
+  width: 100%;
 }
 
 /* =====================
@@ -164,6 +165,7 @@
   flex-grow: 1;
   padding: 40px 36px;
   overflow-y: auto;
+  margin-left: 0;
 }
 
 /* Header */
@@ -449,7 +451,7 @@
     display: block;
   }
   
-  /* Main content adjustment */
+  /* Main content adjustment - remove margin on mobile */
   .dashboard-main {
     margin-left: 0;
     padding: 20px;
