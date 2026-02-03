@@ -7,6 +7,7 @@
   font-family: 'Inter', sans-serif;
   background: #f9fafb;
   width: 100%;
+  overflow: hidden;
 }
 
 /* =====================
@@ -24,6 +25,7 @@
   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
   position: relative;
   height: 100vh;
+  overflow-y: auto;
   transform: translateX(0);
 }
 
@@ -161,10 +163,10 @@
    MAIN CONTENT
 ===================== */
 .dashboard-main {
-  flex-grow: 1;
+  flex: 1;
   padding: 40px 36px;
   overflow-y: auto;
-  margin-left: 0;
+  min-width: 0;
 }
 
 /* Header */
