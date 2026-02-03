@@ -21,9 +21,7 @@
   transition: all 0.3s ease-in-out;
   border-right: 1px solid #047857;
   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-  position: fixed;
-  left: 0;
-  top: 0;
+  position: static;
   height: 100vh;
   z-index: 1000;
   transform: translateX(0);
@@ -435,8 +433,11 @@
 }
 
 @media (max-width: 768px) {
-  /* Sidebar mobile behavior */
+  /* Sidebar mobile behavior - use fixed positioning only on mobile */
   .dashboard-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
     transform: translateX(-100%);
   }
   
