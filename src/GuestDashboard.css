@@ -23,9 +23,12 @@
   transition: all 0.3s ease-in-out;
   border-right: 1px solid #047857;
   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
   height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
+  z-index: 100;
   transform: translateX(0);
 }
 
@@ -67,6 +70,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  overflow-y: auto;
 }
 
 .dashboard-sidebar nav button {
@@ -167,6 +171,7 @@
   padding: 40px 36px;
   overflow-y: auto;
   min-width: 0;
+  margin-left: 260px;
 }
 
 /* Header */
@@ -436,13 +441,10 @@
 }
 
 @media (max-width: 768px) {
-  /* Sidebar mobile behavior - use fixed positioning only on mobile */
+  /* Sidebar mobile behavior - already fixed, just adjust transform */
   .dashboard-sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1000;
     transform: translateX(-100%);
+    z-index: 1000;
   }
   
   .dashboard-sidebar.open {
