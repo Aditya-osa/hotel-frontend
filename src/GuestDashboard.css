@@ -22,9 +22,8 @@
   transition: all 0.3s ease-in-out;
   border-right: 1px solid #047857;
   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-  position: static;
+  position: relative;
   height: 100vh;
-  z-index: 1000;
   transform: translateX(0);
 }
 
@@ -440,6 +439,7 @@
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 1000;
     transform: translateX(-100%);
   }
   
